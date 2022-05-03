@@ -1,0 +1,78 @@
+comandos de navegação windows
+
+dir = exibe diretorios
+cd = muda o diretorio
+cd .. = volta diretorio
+ls = exibe os elementos dentro da pasta (-a exibe os ocultos)
+cls = limpa a tela
+tab alto completa
+mkdir "nome da pasta" ex. workspace
+echo "texto que desejo" > "nome do arquivo".txt
+del "nome da pasta" deleta arquivo dentro do repositorio
+rmdir "nome da pasta " /S /Q deleta o repositorio
+pwd = mostra o caminho completo de qual pasta esta.
+
+
+Git
+
+Objetos fundamentais
+
+Blob - Bolhas - sha1 do arquivo
+Tree - árvore - sha1 
+Commit - 
+
+
+criação de ssh Keys para segurança Github 
+abrir Gitbash no computador
+ssh-keygen -t ed25519 -C khertlynl12@gmail.com
+-Vai aparecer o local onde as chaves serão criadas e o nome da chave
+digitar a senha 2 vezes
+
+entrar na pasta ssh que é o local padrão onde gera a chave
+cd /c/Users/usuario/ .ssh/
+cat id_ed25519.pub (essa é a chave pública)
+copia e cola no site do github Aba SSH and GPG Keys
+
+Inicializar o SSH agent
+eval $(ssh-agent -s) - vai gerar um número de processo (1117)
+
+ssh-add id_ed25519
+
+git clone 
+
+comandos git
+
+git init = inicia um repositório
+git config --global user.email "khertlynl12@gmail.com"
+git config --global user.name "khertlyn"
+git add = git add *
+git commit = git commit -m "commit inicial"
+
+Tracked - ciclo
+Untraked - Unmodified - Modified - Staged
+
+Git Hub
+Criar repositórios
+git remote -v
+git remote add origin https://github.com/Khertlyn/Livro-Receitas.git
+git push origin master 
+
+
+resolvendo conflitos
+git pull origin master
+abre o arquivo, resolve o conflito e comita novamente
+
+git commit -m "observação"
+git push origin master
+
+
+
+
+
+
+
+
+
+
+
+
