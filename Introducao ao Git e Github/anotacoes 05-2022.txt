@@ -45,11 +45,13 @@ comandos git
 git init = inicia um repositório
 git config --global user.email "khertlynl12@gmail.com"
 git config --global user.name "khertlyn"
-git add = git add *
+git add = git add .
 git commit = git commit -m "commit inicial"
 
 Tracked - ciclo
 Untraked - Unmodified - Modified - Staged
+
+Git status -> Git add . -> Git commit -m "mensagem" -> git push origin main (ou master) 
 
 Git Hub
 Criar repositórios
