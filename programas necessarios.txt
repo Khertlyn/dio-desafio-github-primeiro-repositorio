@@ -1,2 +1,4 @@
 Git
 Xamp
+visual studio code
+github desktop
