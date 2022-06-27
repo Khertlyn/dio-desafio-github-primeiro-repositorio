@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "noEmit": false,
+    "noEmitOnError": false, 
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "target": "es2016",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "module": "commonjs",                                /* Specify what module code is generated. */
+    "esModuleInterop": true,  
+    "removeComments": true,                           /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
+    "preserveConstEnums": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "sourceMap": true,
+    "lib": ["es6","DOM","es2017","ES7"],
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    //"forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
+    //"strict": true,                                      /* Enable all strict type-checking options. */
+    //"skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+  }
+}
