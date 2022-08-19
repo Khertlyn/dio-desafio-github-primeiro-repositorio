@@ -1,0 +1,1 @@
+{"version":3,"file":"ListAnnoucementCiadService.js","sourceRoot":"","sources":["../../src/services/ListAnnoucementCiadService.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,qCAA8C;AAC9C,yFAAsF;AAEtF,MAAM,0BAA0B;IACtB,OAAO;;YACT,MAAM,yBAAyB,GAAG,6BAAmB,CAAC,uDAA0B,CAAC,CAAC;YAElF,MAAM,cAAc,GAAG,MAAM,yBAAyB,CAAC,IAAI,EAAE,CAAC;YAE9D,OAAO,cAAc,CAAA;QACzB,CAAC;KAAA;CACJ;AAEQ,gEAA0B"}
