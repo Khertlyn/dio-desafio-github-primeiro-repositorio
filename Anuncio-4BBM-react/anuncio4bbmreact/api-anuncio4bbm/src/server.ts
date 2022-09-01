@@ -8,11 +8,13 @@ import "./database";
 
 const app = express();
 
+const port = process.env.PORT || 3000;
+
 app.use(cors());
 
 app.use(express.json());
 app.use(router)
 
-app.listen(5000, () => {
-    console.log('Server on port: 5000 http://localhost:5000')
+app.listen(port, () => {
+    console.log(`Server on port: http://localhost:${port}`);
 })

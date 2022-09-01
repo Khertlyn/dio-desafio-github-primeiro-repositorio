@@ -1,0 +1,157 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model Tipo_anuncio {
+  id      Int              @id @default(autoincrement())
+  nome    String           @unique
+  anuncio Anuncio_basico[]
+
+  @@map("tipo_anuncio")
+}
+
+model Ala {
+  id      Int              @id @default(autoincrement())
+  nome    String           @unique
+  anuncio Anuncio_basico[]
+
+  @@map("ala")
+}
+
+model Cia {
+  id      Int    @id @default(autoincrement())
+  nome    String @unique
+  Unidade Unid[]
+
+  @@map("cia")
+}
+
+model Grupo_unid {
+  id           Int             @id @default(autoincrement())
+  nome         String          @unique
+  unidade      Unid[]
+  anuncioManut Anuncio_manut[]
+
+  @@map("grupo_unid")
+}
+
+model Unid {
+  id          Int              @id @default(autoincrement())
+  nome        String           @unique
+  ciaId       Int
+  grupoUnidId Int
+  cia         Cia              @relation(fields: [ciaId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  grupoUnid   Grupo_unid       @relation(fields: [grupoUnidId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  anuncio     Anuncio_basico[]
+  anuncioCiadUnid Anuncio_ciad_unid[]
+
+  @@map("unid")
+}
+
+model Viatura {
+  id           Int             @id @default(autoincrement())
+  prefixo      String          @unique
+  placa        String          @unique
+  viaturaBm    Boolean
+  anuncio      Anuncio_unid[]
+  anuncioManut Anuncio_manut[]
+
+  @@map("viatura")
+}
+
+model Anuncio_basico {
+  id            Int             @id @default(autoincrement())
+  tipoAnuncioId Int
+  alaId         Int
+  unidadeId     Int
+  dataAnuncio   DateTime        @default(now()) @db.Timestamptz(6)
+  tipoAnuncio   Tipo_anuncio    @relation(fields: [tipoAnuncioId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  ala           Ala             @relation(fields: [alaId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  unid          Unid            @relation(fields: [unidadeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  anuncio       Anuncio_unid[]
+  anuncioSede   Anuncio_sede[]
+  anuncioManut  Anuncio_manut[]
+
+  @@map("anuncio_basico")
+}
+
+model Anuncio_unid {
+  id              Int             @id @default(autoincrement())
+  anuncioBasicoId Int
+  efetivo         Int
+  motoserra       Int
+  agua            Int
+  lge             Int
+  desencarcerador Int
+  gerador         Int
+  epr             Int
+  viaturaId       Int
+  tripulada       Boolean
+  obs             String          @db.VarChar(256)
+  anuncioBasico   Anuncio_basico? @relation(fields: [anuncioBasicoId], references: [id])
+  viatura         Viatura?        @relation(fields: [viaturaId], references: [id])
+
+
+  @@map("anuncio_unid")
+}
+
+model Anuncio_sede {
+  id              Int             @id @default(autoincrement())
+  anuncioBasicoId Int
+  supervisor      String          @db.VarChar(256)
+  supervisorTel   String          @db.VarChar(256)
+  cbu             String          @db.VarChar(256)
+  cbuTel          String          @db.VarChar(256)
+  acs             String          @db.VarChar(256)
+  acsTel          String          @db.VarChar(256)
+  piloto          String          @db.VarChar(256)
+  pilotoTel       String          @db.VarChar(256)
+  anuncioBasico   Anuncio_basico? @relation(fields: [anuncioBasicoId], references: [id])
+
+  @@map("anuncio_sede")
+}
+
+model Anuncio_manut {
+  id              Int             @id @default(autoincrement())
+  anuncioBasicoId Int
+  grupoUnidId     Int
+  viaturaId       Int
+  obs             String          @db.VarChar(256)
+  anuncioBasico   Anuncio_basico? @relation(fields: [anuncioBasicoId], references: [id])
+  grupoUnid       Grupo_unid      @relation(fields: [grupoUnidId], references: [id])
+  viatura         Viatura         @relation(fields: [viaturaId], references: [id])
+
+  @@map("anuncio_manut")
+}
+
+model Anuncio_ciad {
+  id              Int             @id @default(autoincrement())
+  efetivo_t2      Int
+  efetivo_t1      Int
+  efetivo_t3      Int
+  dataAnuncio     DateTime        @default(now()) @db.Timestamptz(6)
+  anunciante      String
+  anuncioCiadUnid Anuncio_ciad_unid[]
+
+  @@map("anuncio_ciad")
+}
+
+model Anuncio_ciad_unid {
+  id              Int             @id @default(autoincrement())
+  AnuncioCiadId   Int
+  unidadeId       Int
+  operacional     Int
+  scip            Int
+  unidade         Unid  @relation(fields: [unidadeId], references: [id])
+  AnuncioCiad     Anuncio_ciad @relation(fields: [AnuncioCiadId], references: [id])
+  @@map("anuncio_ciad_unid")
+}

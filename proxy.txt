@@ -1,0 +1,9 @@
+setando proxy
+npm config set http-proxy http://proxy.bombeiros.mg.gov.br:8080
+npm config set https-proxy http://proxy.bombeiros.mg.gov.br:8080
+npm set strict-ssl false
+
+
+
+npm config delete proxy
+npm config delete https-proxy
